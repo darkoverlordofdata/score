@@ -1,70 +1,113 @@
 <!DOCTYPE html>
-<html>
+<!-- saved from url=(0043)http://getbootstrap.com/examples/jumbotron/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.jpg">
 
-<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Score</title>
-  <link rel="icon" type="image/GIF" href="favicon.png" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="full-screen" content="yes" />
-  <meta name="screen-orientation" content="portrait" />
-  <meta name="x5-fullscreen" content="true" />
-  <meta name="360-fullscreen" content="true" />
+    <title>Score - bud browser</title>
 
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <meta name="theme-color" content="#000000" />
-  <meta name="description" content="Space Warriors">
-  <meta name="author" content="">
+    <!-- Bootstrap core CSS -->
+    <link href="res/bootstrap.min.css" rel="stylesheet">
 
-  <meta property="og:title" content="Space Warriors" />
-  <meta property="og:type" content="game" />
-  <meta property="og:url" content="https://games.darkoverlordofdata.com/score/" />
-  <meta property="og:image" content="https://games.darkoverlordofdata.com/assets/score.png" />
-  <meta property="og:locale" content="en_US" />
-  <meta property="og:site_name" content="Demo" />
-  <meta property="og:description" content="EntitasTS Demo" />
-  <meta property="fb:app_id" content="???????????????" id="fbAppId" />
-  <meta property="fb:admins" content="100002160218840">
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="res/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
-  <style>
-    html {
-      background: url(logo.png) #000;
-      background-repeat: no-repeat;
-      background-size: cover;
-      -webkit-background-size: cover;
-      -moz-background-size: cover;
-      -o-background-size: cover;
-    }
+    <!-- Custom styles for this template -->
+    <link href="res/jumbotron.css" rel="stylesheet">
 
-    body {
-      padding: 0;
-      margin: 0;
-      background: #000;
-    }
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="res/ie-emulation-modes-warning.js"></script>
 
-    body,
-    canvas, div {
-      -moz-user-select: none;
-      -webkit-user-select: none;
-      -ms-user-select: none;
-      -khtml-user-select: none;
-      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    }
-  </style>
-  <script type="text/javascript" src="strainbrowserwidget.js"></script>
-  <link rel="stylesheet" media="screen" type="text/css" href="strainbrowserwidget.css" />  
-</head>
-<body>
-<div id="SeedFinderStrainBrowser" class="Closed">
- <div id="SFSBtitle">
-  <div id="SFSBlink"><a href="https://en.seedfinder.eu/" title="data by seedfinder.eu"><img src="sflogo.gif" width="20" height="20" alt="seedfinder logo" /></a></div>
-   <div id="SFSBname">StrainInfoBrowser</div>
-  </div>
-  <div id="SFSBselect"><a href="#" onclick="SFselectastrain()">Click here to select a strain.</a></div>
-  <div id="SFSBsearch"><input type="text" name="SFsearchthis" id="SFsearchthis" value="" size="12" maxlength="255" /> <a href="#" onclick="SFshowsearch()">search</a></div>
-  <div id="SFSBrowser"></div>
-</div>
-</body>
-</html>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="http://getbootstrap.com/examples/jumbotron/#">Bud Bro</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<!--<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>-->
+				<li><a href="#">About</a></li>
+				<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu<span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="#">Action</a></li>
+					<li><a href="#">Another action</a></li>
+					<li><a href="#">Something else here</a></li>
+					<li role="separator" class="divider"></li>
+					<li><a href="#">Separated link</a></li>
+					<li role="separator" class="divider"></li>
+					<li><a href="#">One more separated link</a></li>
+				</ul>
+				</li>
+			</ul>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container find-strain">
+        <form class="form-inline">
+          <div class="form-group">
+            <label for="inputStrain">Strain</label>
+            <input type="text" class="form-control" id="inputStrain" placeholder="kush">
+          </div>
+          <button type="submit" class="btn btn-default">Find</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <table class="table table-striped"> 
+          <thead> 
+            <tr> <th>#</th> <th>First Name</th> <th>Last Name</th> <th>Username</th> </tr> 
+          </thead> 
+          <tbody> 
+            <tr> <th scope=row>1</th> <td>Mark</td> <td>Otto</td> <td>@mdo</td> </tr> 
+            <tr> <th scope=row>2</th> <td>Jacob</td> <td>Thornton</td> <td>@fat</td> </tr> 
+            <tr> <th scope=row>3</th> <td>Larry</td> <td>the Bird</td> <td>@twitter</td> </tr> 
+          </tbody> 
+        </table>      
+      </div>
+      <hr>
+      <footer>
+        <p>© 2016 DarkOverlordOfData</p>
+      </footer>
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="res/jquery.min.js"></script>
+    <script src="res/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="res/ie10-viewport-bug-workaround.js"></script>
+	<script src="res/handlebars.min.js"></script>
+    <script src="app.js"></script>
+  
+
+</body></html>
