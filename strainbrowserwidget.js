@@ -8,7 +8,7 @@ var old_SFSBname = '';
 function SFselectastrain() {
 	document.getElementById('SFSBselect').innerHTML = '<span class="pleasewaitasec">please wait a second...</span>';
 	if(typeof BREEDER == "undefined") {
-		var thescript = document.createElement('script'); thescript.type = "text/javascript"; thescript.src = 'http:\/\/en.seedfinder.eu\/api\/json\/ids.json?output=1&strains=1'; document.getElementsByTagName('head')[0].appendChild(thescript);
+		var thescript = document.createElement('script'); thescript.type = "text/javascript"; thescript.src = 'https:\/\/en.seedfinder.eu\/api\/json\/ids.json?output=1&strains=1'; document.getElementsByTagName('head')[0].appendChild(thescript);
 		setTimeout('SFselectBreeder()',1000);
 		}
 	else {
@@ -50,7 +50,7 @@ function SFswitchToBox() {
 		document.getElementById('SFSBlink').innerHTML = '';
 		document.getElementById('SFSBname').innerHTML = '';
 		var thclosea = document.createElement('a'); thclosea.className = 'closethebox'; thclosea.href = '#'; thclosea.onclick = function(){SFcloseStrainInfoBox()}; thclosea.innerHTML = 'X'; document.getElementById('SFSBlink').appendChild(thclosea);
-		var thccca = document.createElement('a'); thccca.title = 'Content is licensed below a Creative Commons BY-NC-SA 3.0 License from http:\/\/en.seedfinder.eu\/'; thccca.href = 'http:\/\/en.seedfinder.eu\/'; thccca.id = 'cclink'; document.getElementById('SFSBname').appendChild(thccca);
+		var thccca = document.createElement('a'); thccca.title = 'Content is licensed below a Creative Commons BY-NC-SA 3.0 License from https:\/\/en.seedfinder.eu\/'; thccca.href = 'https:\/\/en.seedfinder.eu\/'; thccca.id = 'cclink'; document.getElementById('SFSBname').appendChild(thccca);
 		var thcccimg = document.createElement('img'); thcccimg.src = 'cchoch.gif'; thcccimg.width = 11; thcccimg.height = 52; thcccimg.alt = 'licence'; document.getElementById('cclink').appendChild(thcccimg);
 		var search2 = document.createElement('h2'); search2.id = 'SearchH2'; search2.className = 'imloading'; search2.style.display = 'none'; document.getElementById('SFSBrowser').appendChild(search2);
 		var searcdiv = document.createElement('div'); searcdiv.id = 'SFSearchinfo'; searcdiv.style.display = 'none'; document.getElementById('SFSBrowser').appendChild(searcdiv);
@@ -73,7 +73,7 @@ function SFshowsearch() {
 	var thequery = document.getElementById('SFsearchthis').value;
 	thequeryescaped = escape(thequery);
 	if(thequeryescaped != "undefined" && thequeryescaped != "") {
-		var thescript = document.createElement('script'); thescript.type = "text/javascript"; thescript.src = 'http:\/\/en.seedfinder.eu\/api\/json\/search.json?q=' + thequeryescaped + '&output=1'; document.getElementsByTagName('head')[0].appendChild(thescript);
+		var thescript = document.createElement('script'); thescript.type = "text/javascript"; thescript.src = 'https:\/\/en.seedfinder.eu\/api\/json\/search.json?q=' + thequeryescaped + '&output=1'; document.getElementsByTagName('head')[0].appendChild(thescript);
 		// open boxed version if closed
 		SFswitchToBox();
 		document.getElementById('SearchH2').innerHTML = 'please wait while loading...';
@@ -129,7 +129,7 @@ function SFreadinStrainInfo(thebreeder,thestrain) {
 	else {
 		var infoscript = document.createElement('script');
 		infoscript.type="text/javascript";
-		infoscript.src = 'http:\/\/en.seedfinder.eu\/api\/json\/strain.json?br=' + thebreeder + '&str=' + thestrain + '&parents=1&hybrids=1&output=1&comments=3&commlng=es|fr|en|de&reviews=1&tasting=1&medical=1&pics=1&piecharts=1&chsize=100&chcol=dee6d9';
+		infoscript.src = 'https:\/\/en.seedfinder.eu\/api\/json\/strain.json?br=' + thebreeder + '&str=' + thestrain + '&parents=1&hybrids=1&output=1&comments=3&commlng=es|fr|en|de&reviews=1&tasting=1&medical=1&pics=1&piecharts=1&chsize=100&chcol=dee6d9';
 		document.getElementsByTagName('head')[0].appendChild(infoscript);
 		// wait 1.5 seconds before adding the straininfo to the object
 		setTimeout('SFStrainInfoOutput(\'' + seedid + '\')',1500);
@@ -179,12 +179,12 @@ function SFStrainInfoOutput(seedid) {
 			for(var picid in strainInfo[seedid].pics) {
 				var imgalt = strainInfo[seedid].name + ' (Picture from ' + strainInfo[seedid].pics[picid].user + '.)';
 				var imglinktitle = strainInfo[seedid].name + ' (Picture from ' + strainInfo[seedid].pics[picid].user + '.) Click to show the full picture.';
-				var theimgsrc = 'http:\/\/en.seedfinder.eu\/seedlist\/pics\/galerie\/' + strainInfo[seedid].brinfo.id + '\/' + strainInfo[seedid].id + '\/' + picid + '.jpg'
+				var theimgsrc = 'https:\/\/en.seedfinder.eu\/seedlist\/pics\/galerie\/' + strainInfo[seedid].brinfo.id + '\/' + strainInfo[seedid].id + '\/' + picid + '.jpg'
 				// nur eins
 				break;
 				}
 			var abreak = document.createElement('br'); document.getElementById('infobox').appendChild(abreak);
-			var picplusa = document.createElement('a'); picplusa.title = imglinktitle; picplusa.id = 'piclink'; picplusa.href = 'http:\/\/en.seedfinder.eu\/strain-info\/' + strainInfo[seedid].id + '\/' + strainInfo[seedid].brinfo.id + '\/gallery\/' + picid + '\/'; document.getElementById('infobox').appendChild(picplusa);
+			var picplusa = document.createElement('a'); picplusa.title = imglinktitle; picplusa.id = 'piclink'; picplusa.href = 'https:\/\/en.seedfinder.eu\/strain-info\/' + strainInfo[seedid].id + '\/' + strainInfo[seedid].brinfo.id + '\/gallery\/' + picid + '\/'; document.getElementById('infobox').appendChild(picplusa);
 			var strainpic = document.createElement('img'); strainpic.src = theimgsrc; strainpic.alt = imgalt; document.getElementById('piclink').appendChild(strainpic);
 			}
 		else {
@@ -220,7 +220,7 @@ function SFStrainInfoOutput(seedid) {
 			}
 		
 		// Add Link to the Straininfo on seedfinder.eu
-		var strlnk = document.createElement('a'); strlnk.href = 'http:\/\/en.seedfinder.eu\/strain-info\/' + strainInfo[seedid].id + '\/' + strainInfo[seedid].brinfo.id + '\/'; strlnk.innerHTML = 'http:\/\/en.seedfinder.eu\/strain-info\/' + strainInfo[seedid].id + '\/' + strainInfo[seedid].brinfo.id + '\/'; strlnk.title = 'Visit SeedFinders strain-description.';
+		var strlnk = document.createElement('a'); strlnk.href = 'https:\/\/en.seedfinder.eu\/strain-info\/' + strainInfo[seedid].id + '\/' + strainInfo[seedid].brinfo.id + '\/'; strlnk.innerHTML = 'https:\/\/en.seedfinder.eu\/strain-info\/' + strainInfo[seedid].id + '\/' + strainInfo[seedid].brinfo.id + '\/'; strlnk.title = 'Visit SeedFinders strain-description.';
 		document.getElementById('seedfinderLink').innerHTML = '...more info about this strain: ';
 		document.getElementById('seedfinderLink').appendChild(strlnk);
 		document.getElementById('seedfinderLink').style.display = 'block';
