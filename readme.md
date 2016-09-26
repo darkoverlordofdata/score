@@ -20,7 +20,6 @@
 
 
 # Score - the Bud Browser
-Browse for your favrite strains using https:www.cannabisreports.com data
 
 
 
