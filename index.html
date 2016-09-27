@@ -42,7 +42,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="http://getbootstrap.com/examples/jumbotron/#">Bud Bro</a>
+          <a class="navbar-brand" href="http://getbootstrap.com/examples/jumbotron/#">Bud <img src="cannabis-leaf-16.png"/> Bro</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
@@ -80,49 +80,22 @@
 
     <div class="container">
       <!-- Example row of columns -->
-      <div class="row strain">
-
-      </div>
+      <div class="row strain"></div>
       <hr>
       <footer>
+        <p>The Site is available only to individuals who are legally allowed to access cannabis-related information based on their local laws.</p>
         <p>© 2016 DarkOverlordOfData</p>
       </footer>
     </div> <!-- /container -->
-
-    <script id="strain-template" type="x-liquid-template">​
-      <table class="table table-striped table-bordered">
-          <thead>
-              <tr>
-                  <th></th>
-                  <th>Name</th>
-                  <th>Ucpc</th>
-                  <th>Image</th>
-              </tr>
-          </thead>
-
-          <tbody>
-              {% for row in data %}
-              <tr>
-                  <td></td>
-                  <td><a data-toggle="modal" data-target="#row_{{ row.ucpc }}">{{ row.name }}</a></td>
-                  <td>{{ row.ucpc }}</td>
-                  <td><img src="{{ row.image }}" height="48" width="48" /></td>
-              </tr>
-              {% endfor %}
-          </tbody>
-      </table>
-    </script>
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="res/jquery/jquery.min.js"></script>
-    <script src="res/bootstrap-css/bootstrap.min.js"></script>
-    <script src="res/liquid/liquid.coffee.min.js"></script>
-    <script src="res/localstoragedb/localstoragedb.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="res/ie10-viewport-bug-workaround.js"></script>
-    <script src="app.js"></script>
-  
-
-</body></html>
+  </body>
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="res/jquery/jquery.min.js"></script>
+  <script src="res/bootstrap-css/bootstrap.min.js"></script>
+  <script src="res/liquid/liquid.coffee.min.js"></script>
+  <script src="res/localstoragedb/localstoragedb.min.js"></script>
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <script src="res/ie10-viewport-bug-workaround.js"></script>
+  <script src="app.js"></script>
+</html>

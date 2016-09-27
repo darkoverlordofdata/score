@@ -1,9 +1,29 @@
 $(() => {
 
-    let products = []
-    const template = Liquid.Template.parse($('#strain-template')[0].innerHTML)
+    const api = 'https://www.cannabisreports.com/api/v1.0'
 
-    $('.strain').html(template.render({data:[]}))
+    let strainTemplate 
+    let effectTemplate
+    let products = {data:[]}
+
+    /**
+     * Load Liquid templates
+     */
+    $.get('tpl/strain.liquid', (html) => {
+        strainTemplate = Liquid.Template.parse(html)
+        $('.strain').html(strainTemplate.render(products))
+    })
+    
+    $.get('tpl/effect.liquid', (html) => {
+        effectTemplate = Liquid.Template.parse(html)
+        $('.strain').html(effectTemplate.render(products))
+    })
+
+
+    /**
+     * Wire up the events
+     */
+ 	$(window).on('hashchange', () => render(decodeURI(window.location.hash)))
 
     /**
      * Find using
@@ -12,36 +32,25 @@ $(() => {
      * 
      */
 	$('.find-strain button').click((e) => {
-        let strain = $('.find-strain input').val()
-        console.log('strain = ', strain)
-        // Change the url hash;
-        $.getJSON(`https://www.cannabisreports.com/api/v1.0/strains/search/${strain}?callback=?`, function( data ) {
 
-            console.log(strain, data)
-            products = data
-            // Manually trigger a hashchange to start the app.
+        const strain = $('.find-strain input').val()
+
+        $.getJSON(`${api}/strains/search/${strain}?callback=?`, (data) => {
+
 		    window.location.hash = `#${strain}`
+            $('.strain').html(strainTemplate.render(data))
+            products = data
             //$(window).trigger('hashchange')
-        });
+        })
 
 	})
-	// Get data about our products from products.json.
+
 
     /**
-     * selection made
+     * 
      */
-	$(window).on('hashchange', () => {
-        console.log('hashchange', products)
-		render(decodeURI(window.location.hash))
-	})
-
-
     function render(url) {
-        console.log('render', url, products)
-        $('.strain').html(template.render({data: products.data}))
+        //$('.strain').html(strainTemplate.render(products))
     }
-
-
-
 
 })
