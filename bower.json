@@ -21,11 +21,19 @@
     "closure-compiler": "0.2.7",
     "google-closure-library": "*"
   },
-  "dependencies": {},
+  "dependencies": {
+    "localstoragedb": "git://github.com/knadh/localStorageDB",
+    "liquid": "git://github.com/darkoverlordofdata/liquid.coffee",
+    "bootstrap-css": "3.3.6",
+    "jquery": "1.12.4"
+  },
   "install": {
     "ignore": ["closure-compiler", "google-closure-library"],
-    "path": "web/src",
+    "path": "web/res",
     "sources": {
+      "localstoragedb": "packages/localstoragedb/localstoragedb.min.*",
+      "liquid": "packages/liquid/dist/liquid.coffee.min.*",
+      "jquery": "packages/jquery/dist/jquery.min.*"
     }
   }
 }

@@ -1,0 +1,45 @@
+#!/usr/bin/env node
+/**
+ * tools/server
+ * 
+ * Used by F5 ./.vscode/launch.json
+ * 
+ * author: darkoverlordofdata@gmail.com
+ */
+(function() {
+
+	/**
+	 * Run a static server
+	 */
+	var server = require('superstatic').server;
+	var open = require('open');
+	var path = require('path');
+
+	var options = {
+		port: 3474,
+		host: 'localhost',
+		config: {
+			root: './web',
+			routes: {
+			'/': 'index.html',
+			headers: [
+				{
+					source : "**/*.*",
+					headers : [{
+						"key" : "Access-Control-Allow-Origin",
+						"value" : "*"
+					}]
+				}
+				
+			]
+		}
+	},
+		cwd: path.resolve(__dirname, '..'),
+		debug: false 
+	};
+
+	server(options).listen(function(err) {
+		open('http://localhost:3474');
+	});
+
+})()

@@ -10,6 +10,7 @@
 	var gulp = require('gulp');
 	var server = require('gulp-webserver');
 	var logger = require('morgan');
+	var cors = require('cors');
 	var path = process.argv[2] ? process.argv[2] : 'web';
 	
 	if (process.argv[3]) {
@@ -23,6 +24,6 @@
 		livereload: true,
 		directoryListing: false,
 		open: "http://localhost:53610/"+path,
-		middleware: logger('dev')
+		middleware: [logger('dev'), cors()]
 	}));
 })();
