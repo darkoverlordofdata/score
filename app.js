@@ -1,6 +1,9 @@
 $(() => {
 
     let products = []
+    const template = Liquid.Template.parse($('#strain-template')[0].innerHTML)
+
+    $('.strain').html(template.render({data:[]}))
 
     /**
      * Find using
@@ -10,16 +13,15 @@ $(() => {
      */
 	$('.find-strain button').click((e) => {
         let strain = $('.find-strain input').val()
+        console.log('strain = ', strain)
         // Change the url hash;
-        createQueryHash(strain);
-        $.getJSON(`https://www.cannabisreports.com/api/v1.0/strains/search/${strain}`, function( data ) {
+        $.getJSON(`https://www.cannabisreports.com/api/v1.0/strains/search/${strain}?callback=?`, function( data ) {
 
-            // Write the data into our global variable.
-            products = data;
-            console.log(data)
-
+            console.log(strain, data)
+            products = data
             // Manually trigger a hashchange to start the app.
-            // $(window).trigger('hashchange');
+		    window.location.hash = `#${strain}`
+            //$(window).trigger('hashchange')
         });
 
 	})
@@ -29,16 +31,14 @@ $(() => {
      * selection made
      */
 	$(window).on('hashchange', () => {
+        console.log('hashchange', products)
 		render(decodeURI(window.location.hash))
 	})
 
 
-    function createQueryHash(strain) {
-		window.location.hash = `#${strain}`
-    }
-
     function render(url) {
-        console.log('render', url)
+        console.log('render', url, products)
+        $('.strain').html(template.render({data: products.data}))
     }
 
 
