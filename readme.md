@@ -14,6 +14,12 @@
 
 # Bud Bro
 
+Bud Bro, the Bud Browser for Bud Brothers -- Sisters, too!
+
+
+This app uses data from the CannabisReports.com api. To use this app, you must agree to their terms of service:
+https://www.cannabisreports.com/terms
+
 Enter a strain name in browser, lookup by:
       https://www.cannabisreports.com/api/v1.0/strains/search/{{ name }}
 
@@ -23,7 +29,8 @@ use returned data[0] (name needs to match)
 Cache results locally in browser local storage
 
 
-
+ Icon made by [Freepik](www.freeoick.com) from www.flaticon.com
+<div>Icons made by <a href="http://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
 
 # GPLv3 License
 Copyright (c) 2016 Bruce Davidson <darkoverlordofdata@gmail.com>
