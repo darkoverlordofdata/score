@@ -16,7 +16,6 @@ $(() => {
     
     $.get('tpl/effect.liquid', (html) => {
         effectTemplate = Liquid.Template.parse(html)
-        $('.strain').html(effectTemplate.render(products))
     })
 
 
@@ -42,7 +41,6 @@ $(() => {
             products = data
             //$(window).trigger('hashchange')
         })
-
 	})
 
 
