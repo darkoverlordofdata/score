@@ -12,9 +12,9 @@
 
 
 
-# Bud Bro
+# Bud Finder
 
-Bud Bro, the Bud Browser for Bud Brothers -- Sisters, too!
+Bud Finder
 
 
 This app uses data from the CannabisReports.com api. To use this app, you must agree to their terms of service:

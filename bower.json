@@ -25,14 +25,20 @@
     "localstoragedb": "git://github.com/knadh/localStorageDB",
     "liquid": "git://github.com/darkoverlordofdata/liquid.coffee",
     "bootstrap-css": "3.3.6",
-    "jquery": "1.12.4"
+    "jquery": "1.12.4",
+    "page": "*",
+    "material-design-lite": "^1.2.1"
   },
   "install": {
-    "ignore": ["closure-compiler", "google-closure-library"],
+    "ignore": [
+      "closure-compiler",
+      "google-closure-library"
+    ],
     "path": "web/res",
     "sources": {
       "localstoragedb": "packages/localstoragedb/localstoragedb.min.*",
       "liquid": "packages/liquid/dist/liquid.coffee.min.*",
+      "page": "packages/page/page.js",
       "jquery": "packages/jquery/dist/jquery.min.*"
     }
   }

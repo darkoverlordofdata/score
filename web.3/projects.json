@@ -1,0 +1,211 @@
+[
+	{
+		"id": "1",
+		"title": "Buick",
+		"role": "Development",
+		"description": "HTML5 campaign website with dynamic content &middot; Smooth animation on iPad as well as PC Browsers &middot; Aggregates real-time social media from YouTube, Flickr, Facebook, Twitter and automotive blogs",
+		"url": "http:\/\/momentoftruth.com\/",
+		"agency": "thisMoment",
+		"client": "Buick",
+		"images": [
+			"\/img\/projects\/buick-mot\/1.jpg",
+			"\/img\/projects\/buick-mot\/2.jpg",
+			"\/img\/projects\/buick-mot\/3.jpg"
+		]
+	},
+	{
+		"id": "2",
+		"title": "Ongo Mobile Website",
+		"role": "UX, Design, Development",
+		"description": "Cross-platform, cross-device personal news service &middot; Back-end integration with Ongo API &middot; Built with HTML5/CSS3 to provide consistent experience on Blackberry, Android, Windows Phone, WebOS and iOS browsers",
+		"client": "Ongo",
+		"images": [
+			"\/img/projects\/ongo\/1.jpg",
+			"\/img/projects\/ongo\/2.jpg",
+			"\/img/projects\/ongo\/3.jpg"
+		]
+	},
+	{ 
+		"id": "3",
+		"title": "Google Places SXSW",
+		"role": "UX, Design, Development",
+		"description": "Multitouch experience for a live event featuring two networked 65\" monitors with touch overlays &middot; Air app integrating Google Maps API and custom database &middot; Live voting allowed partygoers to rate their favorite Places and see results in realtime",
+		"agency": "Obscura Digital",
+		"client": "Google",
+		"images": [
+			"/img/projects/google-sxsw/2.jpg",
+			"/img/projects/google-sxsw/1.jpg",
+			"/img/projects/google-sxsw/4.jpg"
+		]
+	},
+	{ 
+		"id": "4",
+		"title": "Olympic Challenge YouTube Brand Channel &amp; Minisite",
+		"role": "Development",
+		"description": "Flash plus Papervision 3D &middot; Allows users to submit videos to YouTube via Flash interface &mdash; a first &middot; Accesses three different data sources for localization, text and videos",
+		"url": "http://thebestofuschallenge.olympic.org/",
+		"agency": "Mekanism",
+		"client": "International Olympic Committee",
+		"awards": [
+			"&#9733; FWA Site of the Day"
+		],
+		"images": [
+			"/img/projects/ioc/1.jpg",
+			"/img/projects/ioc/2.jpg",
+			"/img/projects/ioc/3.jpg",
+			"/img/projects/ioc/4.jpg"
+		]
+	},
+	{ 
+		"id": "5",
+		"title": "Oral-B Campaign",
+		"role": "Development",
+		"description": "Flash campaign site plus YouTube channel and Facebook app &middot; Leverages thisMoment CMS to showcase social media content &middot; Experimental interface displays videos, photos and tweets",
+		"url": "http://oralb.thismoment.com/",
+		"agency": "thisMoment, Digitas",
+		"client": "Oral-B",
+		"images": [
+			"/img/projects/oralb/1.jpg",
+			"/img/projects/oralb/2.jpg",
+			"/img/projects/oralb/3.jpg"
+		]
+	},
+	{ 
+		"id": "6",
+		"title": "Golden Grahams Golden Grant",
+		"role": "Development",
+		"description": "Flash video microsite that allows users to post story ideas via Twitter &middot; Viewers vote and most popular stories are turned into animations",
+		"url": "http://gg.mekanism.com/",
+		"agency": "Mekanism",
+		"client": "General Mills",
+		"awards": [
+			"&#9733; Cannes Bronze Cyber Lion"
+		],
+		"images": [
+			"/img/projects/goldengrahams/1.jpg",
+			"/img/projects/goldengrahams/3.jpg",
+			"/img/projects/goldengrahams/6.jpg"
+		]
+	},
+	{ 
+		"id": "7",
+		"title": "Google Nexus One",
+		"role": "Development",
+		"description": "Branded YouTube channel with hybrid Flash/HTML interface &middot; Papervision3D and groundbreaking Flash-based YouTube video player &middot; Site scales dynamically as fresh content is added",
+		"url": "http://www.youtube.com/GoogleNexusOne/",
+		"agency": "Teak Digital",
+		"client": "Google",
+		"awards": [
+			"",
+			""
+		],
+		"images": [
+			"/img/projects/google-nexus-one/1.jpg",
+			"/img/projects/google-nexus-one/2.jpg",
+			"/img/projects/google-nexus-one/3.jpg",
+			"/img/projects/google-nexus-one/4.jpg"
+		]
+	},
+	{ 
+		"id": "8",
+		"title": "Twitter Cooler MMX",
+		"role": "Development",
+		"description": "Dynamically animated Flash environment &middot; Sophisticated back end scours Twitter for search terms over specific times &middot; Scrubbable timeline allows users to explore past tweets &middot; Displays YouTube videos within Flash environment",
+		"url": "http://www.venablesbell.com/twittercoolermmx/",
+		"agency": "Artifact",
+		"client": "Venables, Bell &amp; Partners",
+		"images": [
+			"/img/projects/venables/1.jpg",
+			"/img/projects/venables/2.jpg",
+			"/img/projects/venables/3.jpg",
+			"/img/projects/venables/4.jpg"
+		]
+	},
+	{ 
+		"id": "9",
+		"title": "The Cluster",
+		"role": "UX, Design, Development",
+		"description": "Social network website for skateboarding community &middot; Django-based CMS tracks locations of skate shops and spots across the US &middot; Users can create profiles and upload videos from desktop or mobile devices",
+		"agency": "Mekanism",
+		"client": "MTV2 / T-Mobile",
+		"images": [
+			"/img/projects/skate/1.jpg",
+			"/img/projects/skate/2.jpg"
+		]
+	},
+	{ 
+		"id": "10",
+		"title": "RockBand",
+		"role": "Design, Development",
+		"description": "Social network for EA’s Rock Band video game &middot; Users can create profiles, make friends, share images, connect to game avatars &middot; Fullscreen game footage and motion graphic interface &middot; Real-time leaderboards",
+		"url": "http://www.dave-cole.com/portfolio/rockband/",
+		"agency": "Mekanism",
+		"client": "Harmonix",
+		"awards": [
+			"&#9733; Webby Award Nominee"
+		],
+		"images": [
+			"/img/projects/rockband/1.jpg",
+			"/img/projects/rockband/2.jpg",
+			"/img/projects/rockband/3.jpg",
+			"/img/projects/rockband/4.jpg"
+		]
+	},
+	{ 
+		"id": "11",
+		"title": "State Farm YouTube Brand Channel",
+		"role": "Development",
+		"description": "Branded YouTube channel &middot; Flash plus Away 3D interactive cube &middot; Dynamically populated with full-motion videos using thisMoment API",
+		"url": "http://www.youtube.com/statefarm",
+		"agency": "thisMoment, Digitas",
+		"client": "State Farm Insurance",
+		"images": [
+			"/img/projects/statefarm/1.jpg",
+			"/img/projects/statefarm/2.jpg"
+		]
+	},
+	{
+		"id": "12",
+		"title": "GlidePath",
+		"role": "Design, Development",
+		"description": "Browser-based ER patient care management system &middot; Treatments, tests and status at a glance &middot; Networked system allows monitoring from multiple locations &middot; Currently undergoing clinical trials",
+		"client": "Lifespan",
+		"images": [
+			"\/img\/projects\/glidepath\/1.jpg",
+			"\/img\/projects\/glidepath\/2.jpg"
+		]
+	},
+	{ 
+		"id": "13",
+		"title": "TakePart",
+		"role": "Design, Development",
+		"description": "Large-scale community site to promote education and support conversations around social causes · Drupal based CMS with Brightcove Video, Google Search Appliance, Baynote Personalization Engine",
+		"url": "http://takepart.com/",
+		"agency": "Mekanism",
+		"client": "Participant Media",
+		"images": [
+			"/img/projects/takepart/1.jpg",
+			"/img/projects/takepart/2.jpg"
+		]
+	},
+	{ 
+		"id": "14",
+		"title": "Tostitos Nolaf",
+		"role": "Development",
+		"description": "Fullscreen video with multiple interactive video layers blended seamlessly &middot; Dynamic bandwidth detection and playback optimization &middot; Personalized dynamic video pranks",
+		"url": "http://nolaf.mekanism.com/",
+		"agency": "Mekanism",
+		"client": "Frito-Lay",
+		"awards": [
+			"&#9733; Addy Gold &mdash; Interactive",
+			"&#9733; Addy Gold &mdash; Webisodes",
+			"&#9733; Addy Best of Division"
+		],
+		"images": [
+			"/img/projects/nolaf/1.jpg",
+			"/img/projects/nolaf/3.jpg",
+			"/img/projects/nolaf/4.jpg",
+			"/img/projects/nolaf/5.jpg"
+		]
+	}
+]

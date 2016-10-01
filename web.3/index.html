@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    	<style>
+    		body { width: 600px; margin: auto; }
+    		.flexslider { margin-bottom: 24px; }
+    		#load-more-projects { margin: 24px 0px; }    		
+    	</style>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.3.3/backbone-min.js"></script>
+        <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+        <script src="http://documentcloud.github.com/underscore/underscore-min.js"></script>
+        <script src="http://documentcloud.github.com/backbone/backbone-min.js"></script>-->
+        <script>
+            $(function() {
+                var Profile = Backbone.Model.extend();
+
+                var ProfileList = Backbone.Collection.extend({
+                    model: Profile,
+                    url: 'profiles.json'
+                });   
+
+                var ProfileView = Backbone.View.extend({
+                    el: "#profiles",
+                    template: _.template($('#profileTemplate').html()),
+                    render: function(eventName) {
+                        _.each(this.model.models, function(profile){
+                            var profileTemplate = this.template(profile.toJSON());
+                            $(this.el).append(profileTemplate);
+                        }, this);
+
+                        return this;
+                    }
+                });
+
+                var Project = Backbone.Model.extend();
+
+                var ProjectList = Backbone.Collection.extend({
+                    model: Project,
+                    url: 'projects.json'
+                });   
+
+                var ProjectView = Backbone.View.extend({
+                    el: "#projects",
+                    template: _.template($('#projectTemplate').html()),
+                    page: 0,
+                    perPage: 5,
+                    totalPages: 0,
+                    loadMore: null,
+
+                    initialize: function() {
+                        this.loadMore = new LoadMoreProjectsView();
+                    }, 		
+
+                    // NOTE: This seems awkward. It should be more like "click this.loadMore"
+                    //  or the event should be bound inside the LoadMoreView. I can't get a
+                    //  different solution to work yet though
+                    events: {
+                        "click .load-more-projects":          "renderNextProjectGroup"
+                    },
+
+                    render: function (eventName) {
+                        this.totalPages = Math.ceil(_.size(this.model.models) / this.perPage);
+                        return this.renderProjectGroup(0, this.perPage - 1);
+                    },
+
+                    renderProjectGroup : function(start, end) {
+                        var subset = _.filter(this.model.models, function(num, index){
+                            return (index >= start) && (index <= end);
+                        });
+
+                        _.each(subset, function (project) {
+                            var projectTemplate = this.template(project.toJSON());
+                            $(this.el).append(projectTemplate);
+                        }, this);                    
+
+                        this.renderLoadMoreButton();
+
+                        return this;
+                    },
+
+                    renderNextProjectGroup: function () {
+                        if(this.page < this.totalPages) {
+                            this.page++;
+                            var start = this.page * this.perPage;
+                            var end = start + (this.perPage - 1);
+                            this.renderProjectGroup(start, end);
+                        }
+                    },
+
+                    renderLoadMoreButton: function() {
+                        // If we're on the last page, hide the load more button
+                        if(this.page >= (this.totalPages - 1)) {
+                            this.loadMore.$el.hide();
+                        }
+                        // Otherwise we need to push the load more to the bottom of the portfolio view
+                        else {
+                            this.$el.append( this.loadMore.$el.detach().show() );
+                        }
+                    }        
+                });
+
+                var LoadMoreProjectsView = Backbone.View.extend({
+                    el: $("#load-more-projects")
+                });
+
+                var AppView = Backbone.View.extend({
+                    el: "body",
+                    initialize: function() {
+
+                        var profiles = new ProfileList();    
+                        var profilesView = new ProfileView({
+                            model: profiles
+                        });
+
+                        // When profiles have been successfully grabbed, display them using profile template
+                        profiles.bind('reset', function () {
+                            profilesView.render();
+                        });
+
+                        var projects = new ProjectList();    
+                        var projectsView = new ProjectView({
+                            model: projects
+                        });
+
+                        // When projects have been successfully grabbed, display them using project template
+                        projects.bind('reset', function () {
+                            projectsView.render();
+                        });
+
+                        profiles.fetch({
+                            success: () => profilesView.render()
+                        })
+                        projects.fetch({
+                            success: () => projectsView.render()
+                        })
+                        // profiles.fetch();            
+                        // projects.fetch();
+                    }
+                });
+
+                var App = new AppView;
+
+            });
+        </script>
+        <title>Fortified Studio</title>
+    </head>
+    <body>
+
+        <div id="projects">
+        	<div id="load-more-projects">
+               <a href="javascript:void(0)" class="load-more-projects">Show&nbsp;More</a>
+            </div>
+        </div>
+        <div id="profiles"></div>
+
+        <script id="profileTemplate" type="text/template">
+            <div class="profile">
+                <div class="info">
+                    <div class="name">
+                        <%= name %>
+                    </div>
+                    <div class="title">
+                        <%= title %>
+                    </div>
+                    <div class="background">
+                        <%= background %>
+                    </div>
+                </div>
+            </div>
+        </script>
+
+
+        <script id="projectTemplate" type="text/template">
+
+            <% if(typeof(id) != "undefined") { %>
+            <div class="flexslider media coda-slider preload" id="coda-slider-<%= id %>">
+                <ul class="slides">
+                    <% _.each(images, function(url) { %>
+                    <li class="panel">
+                        <img width="940" height="400" alt="Project Screenshot" src="<%= url %>" />
+                    </li>
+                    <% }); %>
+                </ul>
+                <div class="nav-container"></div>
+            </div>
+
+            <div class="details">
+                <div class="title">
+                    <%= title %>
+                </div>
+                <div class="role">
+                    <%= role %>
+                </div>
+                <div class="description">
+                    <%= description %>
+                    <% if(typeof(url) != "undefined") { %>
+                    &middot; <a target="_blank" href="<%= url %>">View Site</a>
+                    <% } %>
+                </div>
+            </div>
+
+            <div class="credits">
+                <% if(typeof(agency) != "undefined") { %>
+                <div class="agency">
+                    Agency: <%= agency %>
+                </div>
+                <div class="client">
+                    Client: <%= client %>
+                </div>
+                <% } else { %>
+                <div class="agency">
+                    Client: <%= client %>
+                </div>
+                <div class="client"></div>
+                <% } %>
+                <div class="awards">
+                    <% if(typeof(awards) != "undefined") { %>
+                    <% _.each(awards, function(award) { %>
+                    <%= award %><br />
+                    <% }); %>
+                    <% } %>
+                </div>
+            </div>
+            <% } %>
+
+        </script>
+    </body>
+</html>

@@ -3,7 +3,6 @@
         <tr>
             <th></th>
             <th>Name</th>
-            <th>Ucpc</th>
             <th>Image</th>
         </tr>
     </thead>
@@ -13,7 +12,6 @@
         <tr>
             <td></td>
             <td><a data-toggle="modal" data-target="#row_{{ row.ucpc }}">{{ row.name }}</a></td>
-            <td>{{ row.ucpc }}</td>
             <td><img src="{{ row.image }}" height="48" width="48" /></td>
         </tr>
         {% endfor %}
