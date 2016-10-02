@@ -67,7 +67,7 @@
     </nav>
 
 
-	<div class="client">
+	<div id="client">
 		<!-- main client area -->
 		<div class="jumbotron">
 			<div class="container find-strain">
@@ -95,10 +95,24 @@
       </footer>
     </div> <!-- /container -->
   </body>
-
+    <script id="strainTemplate" type="text/template">
+        <div class="strain">
+            <div class="info">
+                <div class="name">
+                    <%= name %>
+                </div>
+                <div class="ucpc">
+                    <%= ucpc %>
+                </div>
+                <div class="image">
+                    <%= image %>
+                </div>
+            </div>
+        </div>
+    </script>
   <!-- Bootstrap core JavaScript
   ================================================== -->
-  <!-- libraries -->
+  <!-- Placed at the end of the document so the pages load faster -->
   <script src="res/jquery/jquery.min.js"></script>
   <script src="res/bootstrap-css/bootstrap.min.js"></script>
   <script src="res/liquid/liquid.coffee.min.js"></script>
@@ -106,7 +120,8 @@
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
   <script src="res/ie10-viewport-bug-workaround.js"></script>
 
-  <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.3.3/backbone-min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.3.3/backbone-min.js"></script>
+  <script src="res/page/page.js"></script>
   <script src="app.js"></script>
 </html>
