@@ -1,156 +1,82 @@
 <!DOCTYPE html>
-<!-- saved from url=(0067)http://demos-sagarganatra.appspot.com/backbone/backboneRouter.html# -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		
-		<link type="text/css" href="./backboneRouter_files/bootstrap.css" rel="stylesheet">
-	</head>
-	<body>
+<html>
+    <head>
+        <title>Fortified Studio</title>
+    </head>
+    <body>
+        <div id="profiles"></div>
+    </body>
+    <script id="profileTemplate" type="text/template">
+        <div class="profile">
+            <div class="info">
+                <div class="name">
+                    <%= name %>
+                </div>
+                <div class="title">
+                    <%= title %>
+                </div>
+                <div class="background">
+                    <%= background %>
+                </div>
+            </div>
+        </div>
+    </script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.3.3/backbone-min.js"></script>
+    <script>
+$(() => {
+    class Profile extends Backbone.Model {}
 
-		<!-- Container -->
-		<div class="container">
-			<div class="row">
-			<form class="form-horizontal">
-				<legend>Login Form</legend>
+    class ProfileList extends Backbone.Collection {
+        get model() {return Profile}
+        get url() {return 'profiles.json'}
+    }
 
-				<div class="control-group">
-					<label class="control-label" for="username">Username</label>
-					<div class="controls">
-					<input type="text" id="username" value="fred">
-					</div>
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="password">Password</label>
-					<div class="controls">
-					<input type="password" id="password">
-					<span class="help-inline">Password should be same as Username</span>
-					</div>
-				</div>
-				<div class="control-group">
-					<div class="controls">
-						<button type="submit" class="btn btn-primary">Submit</button>
-						<button type="reset" class="btn">Cancel</button>
-					</div>
-				</div>
-			</form>
-		</div>
-		</div>
+    class ProfileView extends Backbone.View {
+        get el() {return "#profiles"}
+        get template() {return _.template($('#profileTemplate').html())}
 
-		<!-- login page -->
-		<script type="text/template" id="loginTemplate">
-			<form class="form-horizontal">
-				<legend>Login Form</legend>
+        render(eventName) {
+            this.model.models.forEach((profile) => {
+                let profileTemplate = this.template(profile.toJSON())
+                $(this.el).append(profileTemplate)
+            })
+            return this
+        }
+    }
 
-				<div class="control-group">
-					<label class="control-label" for="username">Username</label>
-					<div class="controls">
-					<input type="text" id="username" value="<%= uname %>"/>
-					</div>
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="password">Password</label>
-					<div class="controls">
-					<input type="password" id="password"/>
-					<span class="help-inline">Password should be same as Username</span>
-					</div>
-				</div>
-				<div class="control-group">
-					<div class="controls">
-						<button type="submit" class="btn btn-primary">Submit</button>
-						<button type="reset" class="btn">Cancel</button>
-					</div>
-				</div>
-			</form>
-		</script>
-		
-		<!-- welcome page -->					
-		<script type="text/template" id="welcomeTemplate">
-			<div class="span6"><h3>Welcome  <%= name %></h3></div>
-			<div class="span6"><button type="button" id="backButton">Back</button></div>
-		</script>
+    class AppView extends Backbone.View {
+        get el() {return "body"}
 
-		<script type="text/javascript" src="./backboneRouter_files/underscore.js"></script>
-		<script type="text/javascript" src="./backboneRouter_files/jquery.min.js"></script>
-		<script type="text/javascript" src="./backboneRouter_files/backbone.js"></script>
-		<script type="text/javascript">
-			(function () {
+        initialize() {
 
-				//define the loginView
-				var LoginView = Backbone.View.extend({
-					
-					//container for the view
-					el: $('div.row'),
+            let profiles = new ProfileList()
+            let profilesView = new ProfileView({
+                model: profiles
+            })
 
-					//handle events
-					events: {
-						"submit": function(evt) {
-							evt.preventDefault();
-							var username = $('#username').val();							
-							var password = $('#password').val();
-							if(username == password) {
-								sessionStorage.username = username;
-								appRouterInstance.navigate("welcome", {trigger: true});
-							}
-						}
-					},
+            // When profiles have been successfully grabbed, display them using profile template
+            profiles.bind('reset', () => {
+                profilesView.render()
+            })
 
-					//render the login page
-					render: function() {
-						var template;
-						if(sessionStorage.username)
-						template = _.template($('#loginTemplate').html(), {uname: sessionStorage.username})
-						else
-						template = _.template($('#loginTemplate').html(), {uname: ""});
-							
-						$('div.row').html(template);						
-					}
-				});
+            profiles.fetch({
+                success: () => profilesView.render()
+            })
+            // profiles.fetch();
+        }
+    }
 
-				//define the welcomeView
-				var WelcomeView = Backbone.View.extend({
+    var App = new AppView()
 
-					//container for the view
-					el: $('div.row'),
+// When projects have been successfully grabbed
+//  display perPage of them using project template
+//  display load more button if we're not on the last page
+// When the load more button is clicked
+//  display another page of projects
 
-					//handle events
-					events: {
-						"click #backButton": function(evt) {
-							appRouterInstance.navigate("", {trigger: true});
-						}
-					},
 
-					//render the welcome page
-					render: function() {
-						if(sessionStorage.username) {
-							var template = _.template($('#welcomeTemplate').html(), {name: sessionStorage.username});
-							$('div.row').html(template);
-						} else {
-							alert('Username not defined');
-						}
-					}
-				});
-
-				var loginViewInstance = new LoginView();
-				var welcomeViewInstance = new WelcomeView();
-
-				//Define the Application Router
-				var AppRouter = Backbone.Router.extend({ 
-					routes: {
-						"": "index",
-						"welcome": "welcome"
-					},					
-					index: function() {
-						loginViewInstance.render();
-						
-					},
-					welcome: function() {
-						welcomeViewInstance.render();
-					}
-				});
-
-				var appRouterInstance = new AppRouter();
-				Backbone.history.start();
-			})();
-		</script>
-	
-
-</body></html>
+})
+    </script>
+</html>

@@ -1,67 +1,14 @@
-let tpl = {
 
-    // Hash of preloaded templates for the app
-    templates:{},
 
-    // Recursively pre-load all the templates for the app.
-    // This implementation should be changed in a production environment. All the template files should be
-    // concatenated in a single file.
-    loadTemplates(names, callback) {
-
-        let loadTemplate = (index) => {
-            let name = names[index]
-            console.log('Loading template: ' + name)
-            $.get('tpl/' + name + '.liquid', (html) => {
-                this.templates[name] = Liquid.Template.parse(html)
-                index++
-                if (index < names.length) {
-                    loadTemplate(index)
-                } else {
-                    callback()
-                }
-            })
-        }
-
-        loadTemplate(0)
-    },
-
-    // Get template by name from hash of preloaded templates
-    get(name) {
-        return this.templates[name]
-    }
-
-}
 $(() => {
     const api = 'https://www.cannabisreports.com/api/v1.0'
-
+    const templates = {}
     let products = {data:[]}
-    let App = null
 
-
-    tpl.loadTemplates(['search', 'strain', 'about'], () => {
-        App = new AppRouter()
+    getTemplates(templates, ['about', 'search', 'strain'], () => {
+        new AppRouter()
         Backbone.history.start()
     })
-
-    class SearchView extends Backbone.View {
-		get el()  {return $('.client')}
-
-        render() {
-            this.el.html(tpl.get('search').render({}))
-        }
-
-    }
-
-    class AboutView extends Backbone.View {
-		get el()  {return $('.client')}
-        
-        render() {
-            this.el.html(tpl.get('about').render({}));
-        }
-    }
-
-    let searchView = new SearchView()
-    let aboutView = new AboutView()
 
     class AppRouter extends Backbone.Router {
         get routes() {
@@ -72,14 +19,86 @@ $(() => {
             }
         }
 
+        initialize(options) {
+            this.searchView = new SearchView({app:this})
+            this.aboutView = new AboutView({app:this})
+            
+        }
+
         index() {
-            searchView.render()
+            this.searchView.render()
         }
         about() {
-            aboutView.render()
+            this.aboutView.render()
         }
         search(name) {
-            searchView.render()
+            let strains = new SearchList({name: name})
+            let strainsView = new StrainView({model: strains})
+            strains.bind('reset', () => strainsView.render())
+            strains.fetch({success: () => strainsView.render()})
+        }
+    }
+
+    
+    class Item extends Backbone.Model {
+        get url() {return `${api}/${this.name}`}
+        get defaults() {
+            return {name: '', ucpc: '', image: ''}
+        }
+    }
+    
+    class SearchList extends Backbone.Collection {
+        get model() {return Item}
+        get url() {return `${api}/strains/search/${this.name}?callback=?`}
+
+        initialize(options) {
+            this.name = options.name
+        }
+        parse(response, options) {
+            return response.data
+        }
+    }
+
+    class SearchView extends Backbone.View {
+		get el()  {return $('.client')}
+        get events() {
+            return {'click div.find-strain': 'onclick'}
+        }
+
+        initialize(options) {
+            this.app = options.app
+        }
+        onclick(e) {
+            const strain = $('.find-strain input').val()
+            this.app.navigate(`strain/${strain}`, {trigger:true})
+        }
+        render() {
+            this.el.html(templates.search.render({}))
+        }
+    }
+
+    class StrainView extends Backbone.View {
+		get el()  {return $('.client')}
+        
+        initialize(options) {
+            this.app = options.app
+        }
+
+        render(eventName) {
+            this.el.html(templates.strain.render({data: this.model.toJSON()}))
+            return this
+        }
+    }
+
+    class AboutView extends Backbone.View {
+		get el() {return $('.client')}
+        
+        initialize(options) {
+            this.app = options.app
+        }
+
+        render() {
+            this.el.html(templates.about.render({}));
         }
     }
 
